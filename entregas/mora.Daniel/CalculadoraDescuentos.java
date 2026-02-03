@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class CalculadoraDescuentos {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        // todo main
 
         System.out.println("Calculadora de Descuentos - Tienda Online");
 
