@@ -1,11 +1,12 @@
 import java.util.Scanner;
 
 public class JuegoAdivinanza {
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Juego de Adivinanza - Adivina el Numero Secreto");
-        
+
         int minN = 1;
         int maxN = 100;
         int maxI = 10; // Max intentos
@@ -34,7 +35,7 @@ public class JuegoAdivinanza {
         System.out.println(); // espacio
         System.out.println("Adivina el numero entre " + minN + " y " + maxN);
 
-        int ns = (int)(Math.random() * (maxN - minN + 1)) + minN;
+        int ns = (int) (Math.random() * (maxN - minN + 1)) + minN;
         int intentosRealizados = 0;
         boolean adivinado = false;
 
@@ -79,7 +80,7 @@ public class JuegoAdivinanza {
             } else if (opt_juego == 1) { // Adivinar
                 System.out.print("Tu numero: ");
                 int n = sc.nextInt();
-                
+
                 // Valida rango
                 if (n < minN || n > maxN) {
                     System.out.println("El numero debe estar entre " + minN + " y " + maxN);
@@ -92,7 +93,7 @@ public class JuegoAdivinanza {
                     }
                     continue; // Saltar intento
                 }
-                
+
                 intentosRealizados++;
 
                 if (n == ns) {
@@ -117,7 +118,7 @@ public class JuegoAdivinanza {
                         pistaActual = "MENOR";
                     }
                 }
-                
+
                 // Guardar en historial
                 if (idx < maxI) {
                     histN[idx] = n;

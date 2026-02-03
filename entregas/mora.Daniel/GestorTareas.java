@@ -1,6 +1,14 @@
 import java.util.Scanner;
 
 public class GestorTareas {
+    static final int MAX_TAREAS = 10;
+    static final int OPCION_ANADIR = 1;
+    static final int OPCION_COMPLETAR = 2;
+    static final int OPCION_VER_PENDIENTES = 3;
+    static final int OPCION_ESTADISTICAS = 4;
+    static final int OPCION_SALIR = 5;
+    static final int PORCENTAJE_TOTAL = 100;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String[] tareas = new String[10];
@@ -33,7 +41,8 @@ public class GestorTareas {
             } else if (opcion == 2) {
                 System.out.println("Tareas para Marcar");
                 for (int i = 0; i < numTareas; i++) {
-                    System.out.println((i + 1) + ". " + tareas[i] + " [" + (completadas[i] ? "Completada" : "Pendiente") + "]");
+                    System.out.println(
+                            (i + 1) + ". " + tareas[i] + " [" + (completadas[i] ? "Completada" : "Pendiente") + "]");
                 }
                 if (numTareas > 0) {
                     System.out.print("Numero de tarea a marcar como completada: ");
