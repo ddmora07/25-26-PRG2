@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class CalculadoraDescuentos {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
         // todo main
 
         System.out.println("Calculadora de Descuentos - Tienda Online");
@@ -53,7 +54,7 @@ public class CalculadoraDescuentos {
                 continue;
             }
 
-            // Calcular total del carrito
+            // Calcular total del carrito ( Mal uso de comentarios)
             double p_total = 0;
             int c_total = 0;
             for (int i = 0; i < n_prods; i++) {
