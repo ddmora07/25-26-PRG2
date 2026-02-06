@@ -10,10 +10,10 @@ public class GestorTareas {
     static final int PORCENTAJE_TOTAL = 100;
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         String[] tareas = new String[10];
-        boolean[] completadas = new boolean[10];
-        int numTareas = 0;
+        boolean[] tareascompletadas = new boolean[10];
+        int contadorDeTareas = 0;
 
         System.out.println("Gestor de Tareas v1.0");
 
@@ -24,32 +24,34 @@ public class GestorTareas {
             System.out.println("[4] Ver estadisticas");
             System.out.println("[5] Salir");
             System.out.print("Opcion: ");
-            int opcion = sc.nextInt();
-            sc.nextLine();
+            int opcion = scanner.nextInt();
+            scanner.nextLine();
 
             if (opcion == 1) {
-                if (numTareas < 10) {
+                if (contadorDeTareas < 10) {
                     System.out.print("Descripcion de la nueva tarea: ");
-                    String d = sc.nextLine();
-                    tareas[numTareas] = d;
-                    completadas[numTareas] = false;
-                    numTareas++; // El contador se incrementa
+                    String descripciónDeTareas = scanner.nextLine();
+                    tareas[contadorDeTareas] = descripciónDeTareas;
+                    tareascompletadas[contadorDeTareas] = false;
+                    contadorDeTareas++;
                     System.out.println("Tarea anadida correctamente.");
                 } else {
                     System.out.println("ERROR: No se pueden anadir mas tareas, limite alcanzado.");
                 }
             } else if (opcion == 2) {
                 System.out.println("Tareas para Marcar");
-                for (int i = 0; i < numTareas; i++) {
+                for (int tarea = 0; tarea < contadorDeTareas; tarea++) {
                     System.out.println(
-                            (i + 1) + ". " + tareas[i] + " [" + (completadas[i] ? "Completada" : "Pendiente") + "]");
+                            (tarea + 1) + ". " + tareas[tarea] + " ["
+                                    + (tareascompletadas[tarea] ? "Completada" : "Pendiente")
+                                    + "]");
                 }
-                if (numTareas > 0) {
+                if (contadorDeTareas > 0) {
                     System.out.print("Numero de tarea a marcar como completada: ");
-                    int num = sc.nextInt();
-                    if (num >= 1 && num <= numTareas) {
-                        if (!completadas[num - 1]) {
-                            completadas[num - 1] = true;
+                    int numeroDeTarea = scanner.nextInt();
+                    if (numeroDeTarea >= 1 && numeroDeTarea <= contadorDeTareas) {
+                        if (!tareascompletadas[numeroDeTarea - 1]) {
+                            tareascompletadas[numeroDeTarea - 1] = true;
                             System.out.println("Tarea marcada como completada.");
                         } else {
                             System.out.println("Esta tarea ya estaba completada.");
@@ -63,8 +65,8 @@ public class GestorTareas {
             } else if (opcion == 3) {
                 System.out.println("Tareas Pendientes");
                 boolean hayPendientes = false;
-                for (int i = 0; i < numTareas; i++) {
-                    if (!completadas[i]) {
+                for (int i = 0; i < contadorDeTareas; i++) {
+                    if (!tareascompletadas[i]) {
                         System.out.println((i + 1) + ". " + tareas[i]);
                         hayPendientes = true;
                     }
@@ -74,18 +76,18 @@ public class GestorTareas {
                 }
             } else if (opcion == 4) {
                 System.out.println("Estadisticas");
-                int contCompletadas = 0;
-                for (int i = 0; i < numTareas; i++) {
-                    if (completadas[i]) {
-                        contCompletadas++;
+                int contadorDeTareasCompletadas = 0;
+                for (int tarea = 0; tarea < contadorDeTareas; tarea++) {
+                    if (tareascompletadas[tarea]) {
+                        contadorDeTareasCompletadas++;
                     }
                 }
-                System.out.println("Total de tareas: " + numTareas);
-                System.out.println("Tareas completadas: " + contCompletadas);
-                System.out.println("Tareas pendientes: " + (numTareas - contCompletadas));
-                if (numTareas > 0) {
-                    double porc = (contCompletadas * 100.0) / numTareas;
-                    System.out.println("Porcentaje de completacion: " + porc + "%");
+                System.out.println("Total de tareas: " + contadorDeTareas);
+                System.out.println("Tareas completadas: " + contadorDeTareasCompletadas);
+                System.out.println("Tareas pendientes: " + (contadorDeTareas - contadorDeTareasCompletadas));
+                if (contadorDeTareas > 0) {
+                    double porcentaje = (contadorDeTareasCompletadas * 100.0) / contadorDeTareas;
+                    System.out.println("Porcentaje de completacion: " + porcentaje + "%");
                 }
             } else if (opcion == 5) {
                 System.out.println("Saliendo del gestor de tareas.");
@@ -94,6 +96,6 @@ public class GestorTareas {
                 System.out.println("Opcion no valida. Intente de nuevo.");
             }
         }
-        sc.close();
+        scanner.close();
     }
 }
