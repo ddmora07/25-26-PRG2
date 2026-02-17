@@ -51,42 +51,46 @@ public class BuscaMinasCorregido {
 		///////////// Comienza el juego
 		while (juegoEncendido == 1) {
 			for (minasColocadas = 0; minasColocadas < tableroVisible.length; minasColocadas++) {
-				for (int j = 0; j < tableroVisible[minasColocadas].length; j++)
+				for (int j = 0; j < tableroVisible[minasColocadas].length; j++) {
 					System.out.print(tableroVisible[minasColocadas][j]);
+
+				}
+				System.out.println(" ");
+
 			}
-			System.out.println(" ");
-		}
-		valoresCorrectos = 0;// reseteo de la variable
-		while (valoresCorrectos == 0) {
-			System.out.println(" ");
-			System.out.println("Ingrese X");
-			filaMina = scanner.nextInt();
-			System.out.println("Ingrese Y");
-			columnaMina = scanner.nextInt();
-			if (filaMina < 1 || filaMina > 5 || columnaMina < 1 || columnaMina > 7) {
-				valoresCorrectos = 0;
+			valoresCorrectos = 0;// reseteo de la variable
+			while (valoresCorrectos == 0) {
+				System.out.println(" ");
+				System.out.println("Ingrese X");
+				filaMina = scanner.nextInt();
+				System.out.println("Ingrese Y");
+				columnaMina = scanner.nextInt();
+				if (filaMina < 1 || filaMina > 5 || columnaMina < 1 || columnaMina > 7) {
+					valoresCorrectos = 0;
+				} else {
+					valoresCorrectos = 1;
+				}
+			}
+
+			if (tableroMinasActivas[filaMina][columnaMina].equals("1")) {
+				tableroVisible[filaMina][columnaMina] = "x";
+				contadorMinas++;
+			} else if (tableroMinasActivas[filaMina][columnaMina].equals("0")) {
+				tableroVisible[filaMina][columnaMina] = ".";
 			} else {
-				valoresCorrectos = 1;
+				System.out.println("No es correcta esa opcion.");
 			}
-		}
 
-		if (tableroMinasActivas[filaMina][columnaMina].equals("1")) {
-			tableroVisible[filaMina][columnaMina] = "x";
-			contadorMinas++;
-		} else if (tableroMinasActivas[filaMina][columnaMina].equals("0")) {
-			tableroVisible[filaMina][columnaMina] = ".";
-		} else {
-			System.out.println("No es correcta esa opcion.");
-		}
+			contadorMapa++;
+			if (contadorMinas > 2) {
+				juegoEncendido = 0;
+				System.out.println("Has perdido");
+			} else if (contadorMapa >= 30) {
+				System.out.println("Felicidades Ganador!");
+				juegoEncendido = 0;
+			} else {
 
-		contadorMapa++;
-		if (contadorMinas > 2) {
-			juegoEncendido = 0;
-			System.out.println("Has perdido");
-		} else if (contadorMapa >= 30) {
-			System.out.println("Felicidades Ganador!");
-			juegoEncendido = 0;
-		} else {
+			}
 
 		}
 	}
