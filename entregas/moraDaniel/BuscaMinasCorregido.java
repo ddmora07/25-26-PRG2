@@ -31,14 +31,19 @@ public class BuscaMinasCorregido {
 
 			{ "5", "0", "0", "0", "0", "0", "0", "0" }
 	};
+	static final int FILAS = 5;
+	static final int COLUMNAS = 7;
+	static final int TOTAL_MINAS = 5;
+	static final int MAX_EXPLOSIONES = 3;
+	static final int CASILLAS_LIBRES = FILAS * COLUMNAS - TOTAL_MINAS;
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
 		int minasColocadas = 0;
-		while (minasColocadas < 5) {
-			int filaAleatorinaDeMina = (int) (Math.random() * 5 + 1);
-			int columnaAleatoriaDeMina = (int) (Math.random() * 7 + 1);
+		while (minasColocadas < TOTAL_MINAS) {
+			int filaAleatorinaDeMina = (int) (Math.random() * FILAS + 1);
+			int columnaAleatoriaDeMina = (int) (Math.random() * COLUMNAS + 1);
 			if (!tableroMinasActivas[filaAleatorinaDeMina][columnaAleatoriaDeMina].equals("1")) {
 
 				tableroMinasActivas[filaAleatorinaDeMina][columnaAleatoriaDeMina] = "1";
@@ -64,7 +69,7 @@ public class BuscaMinasCorregido {
 				filaMina = scanner.nextInt();
 				System.out.println("Ingrese Y");
 				columnaMina = scanner.nextInt();
-				if (filaMina < 1 || filaMina > 5 || columnaMina < 1 || columnaMina > 7) {
+				if (filaMina < 1 || filaMina > FILAS || columnaMina < 1 || columnaMina > COLUMNAS) {
 					valoresCorrectos = 0;
 				} else {
 					valoresCorrectos = 1;
@@ -81,10 +86,10 @@ public class BuscaMinasCorregido {
 			}
 
 			contadorMapa++;
-			if (contadorMinas > 2) {
+			if (contadorMinas >= MAX_EXPLOSIONES) {
 				juegoEncendido = 0;
 				System.out.println("Has perdido");
-			} else if (contadorMapa >= 30) {
+			} else if (contadorMapa >= CASILLAS_LIBRES) {
 				System.out.println("Felicidades Ganador!");
 				juegoEncendido = 0;
 			} else {
