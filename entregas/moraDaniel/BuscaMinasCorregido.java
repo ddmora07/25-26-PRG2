@@ -98,11 +98,11 @@ public class BuscaMinasCorregido {
 
 	static void iniciarJuego(Scanner scanner) {
 
-		int juegoEncendido = 1;
+		boolean juegoEncendido = true;
 		int contadorMapa = 0;
 		int contadorMinas = 0;
 
-		while (juegoEncendido == 1) {
+		while (juegoEncendido) {
 
 			mostrarTablero();
 
@@ -121,10 +121,10 @@ public class BuscaMinasCorregido {
 
 			if (contadorMinas >= MAX_EXPLOSIONES) {
 				System.out.println("Has perdido");
-				juegoEncendido = 0;
+				juegoEncendido = false;
 			} else if (contadorMapa >= CASILLAS_LIBRES) {
 				System.out.println("Felicidades Ganador!");
-				juegoEncendido = 0;
+				juegoEncendido = false;
 			}
 		}
 	}
